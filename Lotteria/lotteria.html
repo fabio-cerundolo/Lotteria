@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotteria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .premi {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .premi ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .premi ul li {
+            padding: 5px;
+        }
+
+        .estrazione {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .estrazione select {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .estrazione button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .estrazione #risultato {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lotteria</h1>
+    </header>
+    <main>
+        <section class="premi">
+            <h2>Premi in palio</h2>
+            <ul>
+                <li>Premio 1</li>
+                <li>Premio 2</li>
+                <li>Premio 3</li>
+                <li>...</li>
+                <li>Premio 30</li>
+            </ul>
+        </section>
+        <section class="estrazione">
+            <h2>Estrai il tuo numero</h2>
+            <select id="premio">
+                <option value="">Seleziona un premio</option>
+                <option value="Premio 1">Premio 1</option>
+                <option value="Premio 2">Premio 2</option>
+                <option value="Premio 3">Premio 3</option>
+                <option value="Premio 4">Premio 4</option>
+                <option value="Premio 5">Premio 5</option>
+            </select>
+            <button onclick="estrai()">Estrai</button>
+            <p id="risultato"></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 - Lotteria</p>
+    </footer>
+    <script>
+        // Array per memorizzare i numeri estratti
+        const numeriEstratti = [];
+
+        // Funzione per estrarre un numero casuale
+        function estrai() {
+        // Recupera il premio selezionato dall'utente
+        const premioSelezionato = document.getElementById("premio").value;
+
+        // Genera un numero casuale
+        let numeroEstratto;
+        do {
+            numeroEstratto = Math.floor(Math.random() * 30) + 1;
+        } while (numeriEstratti.includes(numeroEstratto));
+
+        // Aggiungi il numero estratto all'array
+        numeriEstratti.push(numeroEstratto);
+
+        // Stampa risultato
+        document.getElementById("risultato").innerHTML = `
+            Il numero estratto è: ${numeroEstratto}<br>
+            Il premio vinto è: ${premioSelezionato}
+        `;
+        }
+
+    </script>
+</body>
+</html>
